@@ -8,6 +8,8 @@ const { isProduction } = require('./config/keys');
 const csurf = require('csurf');
 
 require('./models/User');
+require('./config/passport');
+const passport = require('passport');
 
 const tweetsRouter = require('./routes/api/tweets')
 const usersRouter = require('./routes/api/users');
@@ -20,6 +22,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(passport.initialize());
 
 if(!isProduction) app.use(cors());
 
