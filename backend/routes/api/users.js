@@ -67,6 +67,8 @@ router.post('/login', validateLoginInput, async (req, res, next) => {
   }) (req, res, next); 
 })
 
+
+//requires the csrf token in the headers under authorization
 router.get('/current', restoreUser, (req, res) => {
   if(!isProduction){
     const csrfToken = req.csrfToken();
